@@ -479,3 +479,23 @@
     padding-right: 0;
     border-right: none;
 }
+
+#whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#whatsapp-button i {
+    color: white;
+    font-size: 30px;
+}
+
+#whatsapp-button:hover {
+    background-color: #128C7E;
+}
