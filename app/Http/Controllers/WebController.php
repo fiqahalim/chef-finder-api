@@ -10,30 +10,35 @@ use App\Models\Reservation;
 class WebController extends Controller
 {
     // Show the home page
-    public function home() {
+    public function home()
+    {
         $restaurants = Restaurant::all();
         return view('home', compact('restaurants'));
     }
 
     // Show a restaurant's details
-    public function showRestaurant($id) {
+    public function showRestaurant($id)
+    {
         $restaurant = Restaurant::findOrFail($id);
         return view('restaurant.show', compact('restaurant'));
     }
 
     // Show a chef's details
-    public function showChef($id) {
+    public function showChef($id)
+    {
         $chef = Chef::findOrFail($id);
         return view('chef.show', compact('chef'));
     }
 
     // Show reservation form
-    public function showReservationForm($restaurantId) {
+    public function showReservationForm($restaurantId)
+    {
         return view('reservation.form', compact('restaurantId'));
     }
 
     // Handle reservation request
-    public function makeReservation(Request $request) {
+    public function makeReservation(Request $request)
+    {
         $request->validate([
             'restaurant_id' => 'required|exists:restaurants,id',
             'user_id' => 'required|exists:users,id',
@@ -44,5 +49,11 @@ class WebController extends Controller
         Reservation::create($request->all());
 
         return redirect()->route('home')->with('success', 'Reservation made successfully!');
+    }
+
+    // Contact us page
+    public function contactUs()
+    {
+        return view('contact-us');
     }
 }

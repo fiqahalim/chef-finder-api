@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 // Home page
 Route::get('/', [WebController::class, 'home'])->name('home');
 
+// Contact us page
+Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
+
 // Show restaurant details
 Route::get('/restaurant/{id}', [WebController::class, 'showRestaurant'])->name('restaurant.show');
 
