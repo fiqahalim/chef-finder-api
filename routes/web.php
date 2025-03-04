@@ -33,8 +33,8 @@ Route::get('/chef-interview', [WebController::class, 'showInterviews'])->name('c
 
 // Reservation form
 Route::middleware('auth')->group(function () {
-    Route::get('/reserve/{restaurantId}', [WebController::class, 'showReservationForm'])->name('reservation.form');
-    Route::post('/reserve', [WebController::class, 'makeReservation'])->name('reservation.make');
+    Route::get('/reserve', [WebController::class, 'showReservationForm'])->name('reservation.form');
+    Route::post('/reserve/save', [WebController::class, 'makeReservation'])->name('reservation.save');
 });
 
 // Authentication Routes

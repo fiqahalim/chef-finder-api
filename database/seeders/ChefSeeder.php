@@ -25,7 +25,7 @@ class ChefSeeder extends Seeder
             'name' => 'Emily Harris',
             'specialty' => 'Italian Cuisine',
             'bio' => 'With a passion for authentic Italian dishes, Emily has honed her skills in both Italy and the United States, focusing on fresh pasta and traditional sauces.',
-            'profile_image' => 'chefs/team-2.jpg',
+            'profile_image' => 'chefs/team-5.jpg',
             'restaurant_id' => 2,
         ]);
 
@@ -43,6 +43,14 @@ class ChefSeeder extends Seeder
             'bio' => 'A master of grilling, David has worked at some of the best steakhouses in the world, known for his perfectly cooked steaks and dedication to quality meat.',
             'profile_image' => 'chefs/team-4.jpg',
             'restaurant_id' => 5,
+        ]);
+
+        Chef::create([
+            'name' => 'Gordon Ramsay',
+            'specialty' => 'Steak & Grills',
+            'bio' => 'A world-renowned chef and culinary genius, Gordon Ramsay is celebrated for his exceptional expertise in grilling and preparing steaks.',
+            'profile_image' => 'chefs/team-8.jpg',
+            'restaurant_id' => 10,
         ]);
     }
 }

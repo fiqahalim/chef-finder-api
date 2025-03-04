@@ -20,7 +20,7 @@
                     <h1 class="text-white mb-4">Book A Table Online</h1>
                     
                     <!-- Reservation Form -->
-                    <form action="{{ route('reservation.make') }}" method="POST">
+                    <form action="{{ route('reservation.save') }}" method="POST">
                         @csrf
 
                         <div class="row g-3">
@@ -35,35 +35,29 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="name">{{ __('default.global.name') }}</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <label for="email">{{ __('default.global.email') }}</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
                             </div>
 
                             <!-- Date Input -->
                             <div class="form-group">
-                                <label for="date">Reservation Date</label>
-                                <input type="date" class="form-control" id="date" name="date" required>
-                            </div>
-
-                            <!-- Time Input -->
-                            <div class="form-group">
-                                <label for="time">Reservation Time</label>
-                                <input type="time" class="form-control" id="time" name="time" required>
+                                <label for="date">{{ __('default.reservation.reserve-date') }}</label>
+                                <input type="date" class="form-control" id="reservation_date" name="reservation_date" required>
                             </div>
 
                             <!-- Number of Guests Input -->
                             <div class="form-group">
-                                <label for="guests">Number of Guests</label>
+                                <label for="guests">{{ __('default.reservation.guest') }}</label>
                                 <input type="number" class="form-control" id="guests" name="guests" min="1" required>
                             </div>
 
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary w-100 py-3">Confirm Reservation</button>
+                                <button type="submit" class="btn btn-primary w-100 py-3">{{ __('default.reservation.confirm') }}</button>
                             </div>
                         </div>
                     </form>

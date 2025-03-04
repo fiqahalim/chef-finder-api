@@ -68,14 +68,11 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-    
+
         if (auth()->attempt($request->only('email', 'password'))) {
-            $restaurantId = Restaurant::first()->id;
-    
-            return redirect()->route('reservation.form', ['restaurantId' => $restaurantId])
-                             ->with('success', 'Login successful!');
+            return redirect()->route('reservation.form')->with('success', 'Login successful!');
         }
-    
+
         throw ValidationException::withMessages(['email' => ['Invalid credentials']]);
     }
 
