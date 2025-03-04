@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top px-4 px-lg-5 py-3 py-lg-0">
         <div class="container">
             <a class="navbar-brand text-gold fw-bold" href="{{ route('home') }}">
-                <img src="img/logo.png" alt="Logo">
+                <img src="../img/logo.png" alt="Logo">
                 {{ __('default.menu.title') }}
             </a>
 
@@ -16,16 +16,16 @@
                         <a class="nav-link text-light" href="{{ route('home') }}">{{ __('default.menu.home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">{{ __('default.menu.chefs') }}</a>
+                        <a class="nav-link text-light" href="{{ route('chef.index') }}">{{ __('default.menu.chefs') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">{{ __('default.menu.restaurants') }}</a>
+                        <a class="nav-link text-light" href="{{ route('restaurant.index') }}">{{ __('default.menu.restaurants') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">{{ __('default.menu.interviews') }}</a>
+                        <a class="nav-link text-light" href="{{ route('chef.interview') }}">{{ __('default.menu.interviews') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">{{ __('default.menu.reservations') }}</a>
+                        <a class="nav-link text-light" href="{{ route('reservation.form', $restaurant->id) }}">{{ __('default.menu.reservations') }}</a>
                     </li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
                             and leave you craving more. Whether you're celebrating a special occasion or simply enjoying a night out,
                             our chefs ensure an unforgettable dining experience.
                         </p>
-                        <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" id="reserveBtn">
+                        <a href="{{ route('reservation.form', $restaurant->id) }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" id="reserveBtn">
                             {{ __('default.reservation.booked') }}
                         </a>
                     </div>

@@ -19,6 +19,13 @@ return [
         'send-message'  => 'Send Message',
         'booking'       => 'Booking',
         'general'       => 'General',
+        'not-available' => 'Not available',
+        'rating'        => 'Rating',
+        'location'      => 'Location',
+        'description'   => 'Description',
+        'specialty'     => 'Specialty',
+        'detail'        => 'Detail',
+        'all'           => 'All',
     ],
     'menu' => [
         'title'         => 'CHEF FINDER',
@@ -32,5 +39,13 @@ return [
     ],
     'reservation' => [
         'booked'        => 'Book A Reservation Now',
+    ],
+    'footer' => [
+        'reserved'  => 'All Right Reserved',
+        'developer' => 'Designed By fiqahalim',
+        'weekday'   => 'Monday - Friday',
+        'weekend'   => 'Saturday',
+        'weekday-time'  => '12PM - 9PM',
+        'weekend-time'  => '12PM - 6PM',
     ],
 ];

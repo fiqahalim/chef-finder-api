@@ -1,19 +1,93 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Make a Reservation</h1>
-    <form action="{{ route('reservation.make') }}" method="POST">
-        @csrf
-        <input type="hidden" name="restaurant_id" value="{{ $restaurantId }}">
+<div class="container-xxl py-5 px-0 wow fadeInUp">
+    <div class="container">
+        <div class="row g-0" style="margin-top:50px;margin-bottom:50px;">
+            <div class="col-md-6">
+                <div class="video">
+                    <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                        <span></span>
+                    </button>
+                </div>
+            </div>
 
-        <label>Date & Time:</label>
-        <input type="datetime-local" name="reservation_date" required class="form-control">
+            <div class="col-md-6 bg-dark d-flex align-items-center">
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">
+                        {{ __('default.menu.reservations') }}
+                    </h5>
+                    <h1 class="text-white mb-4">Book A Table Online</h1>
+                    
+                    <!-- Reservation Form -->
+                    <form action="{{ route('reservation.make') }}" method="POST">
+                        @csrf
 
-        <label>Number of Guests:</label>
-        <input type="number" name="guests" required class="form-control">
+                        <div class="row g-3">
+                            <div class="form-group">
+                                <label for="restaurant_id">Choose a Restaurant</label>
+                                <select class="form-control" id="restaurant_id" name="restaurant_id" required>
+                                    <option value="">Select a Restaurant</option>
+                                    @foreach($restaurants as $restaurant)
+                                        <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Confirm Reservation</button>
-    </form>
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+
+                            <!-- Date Input -->
+                            <div class="form-group">
+                                <label for="date">Reservation Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+
+                            <!-- Time Input -->
+                            <div class="form-group">
+                                <label for="time">Reservation Time</label>
+                                <input type="time" class="form-control" id="time" name="time" required>
+                            </div>
+
+                            <!-- Number of Guests Input -->
+                            <div class="form-group">
+                                <label for="guests">Number of Guests</label>
+                                <input type="number" class="form-control" id="guests" name="guests" min="1" required>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100 py-3">Confirm Reservation</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="ratio ratio-16x9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                        allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained();
             $table->dateTime('reservation_date');
             $table->integer('guests');
+            $table->enum('status', ['booked', 'cancelled', 'completed'])->default('booked');
             $table->timestamps();
         });
     }

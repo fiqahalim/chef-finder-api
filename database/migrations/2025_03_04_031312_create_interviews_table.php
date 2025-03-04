@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chefs', function (Blueprint $table) {
+        Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('specialty');
-            $table->string('bio')->nullable();
-            $table->string('profile_image')->nullable();
-            $table->foreignId('restaurant_id')->constrained();
+            $table->foreignId('chef_id')->constrained('chefs')->onDelete('cascade');
+            $table->text('interview_excerpt')->nullable();
+            $table->text('start_story')->nullable();
+            $table->text('michelin_experience')->nullable();
+            $table->text('previous_work')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chefs');
+        Schema::dropIfExists('interviews');
     }
 };

@@ -3,9 +3,9 @@
         <div class="row g-5">
             <div class="col-lg-4 col-md-8">
                 <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">{{ __('default.menu.small-title') }}</h4>
-                <a class="btn btn-link" href="">{{ __('default.global.about-us') }}</a>
+                <a class="btn btn-link" href="{{ route('about') }}">{{ __('default.global.about-us') }}</a>
                 <a class="btn btn-link" href="{{ route('contact-us') }}">{{ __('default.global.contact-us') }}</a>
-                <a class="btn btn-link" href="">{{ __('default.menu.reservations') }}</a>
+                <a class="btn btn-link" href="{{ route('reservation.form', $restaurant->id) }}">{{ __('default.menu.reservations') }}</a>
             </div>
 
             <div class="col-lg-4 col-md-8">
@@ -26,10 +26,10 @@
                 <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">
                     {{ __('default.global.opening') }}
                 </h4>
-                <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                <p>12PM - 9PM</p>
-                <h5 class="text-light fw-normal">Sunday</h5>
-                <p>12PM - 5PM</p>
+                <h5 class="text-light fw-normal">{{ __('default.footer.weekday') }}</h5>
+                <p>{{ __('default.footer.weekday-time') }}</p>
+                <h5 class="text-light fw-normal">{{ __('default.footer.weekend') }}</h5>
+                <p>{{ __('default.footer.weekend-time') }}</p>
             </div>
         </div>
     </div>
@@ -38,8 +38,8 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; 2025 <a class="border-bottom" href="#">{{ __('default.menu.title') }}</a>. All Right Reserved. 
-                    Designed By fiqahalim
+                    &copy; {{ now()->year }} <a class="border-bottom" href="#">{{ __('default.menu.title') }}</a>. {{ __('default.footer.reserved') }}. 
+                    {{ __('default.footer.developer') }}
                 </div>
             </div>
         </div>

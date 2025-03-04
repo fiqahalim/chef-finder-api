@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -10,7 +11,27 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
-     * Handle user registration
+     * Show the login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * Show the registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    /**
+     * Handle user registration.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -29,11 +50,13 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['token' => $user->createToken('auth_token')->plainTextToken]);
+        auth()->login($user);
+
+        return redirect()->route('reservation.form')->with('success', 'Registration successful! You are now logged in.');
     }
 
     /**
-     * Handle user login
+     * Handle user login.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -45,14 +68,15 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages(['email' => ['Invalid credentials']]);
+    
+        if (auth()->attempt($request->only('email', 'password'))) {
+            $restaurantId = Restaurant::first()->id;
+    
+            return redirect()->route('reservation.form', ['restaurantId' => $restaurantId])
+                             ->with('success', 'Login successful!');
         }
-
-        return response()->json(['token' => $user->createToken('auth_token')->plainTextToken]);
+    
+        throw ValidationException::withMessages(['email' => ['Invalid credentials']]);
     }
 
     /**
@@ -63,7 +87,8 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out successfully']);
+        auth()->logout();
+
+        return redirect()->route('login')->with('success', 'Logged out successfully');
     }
 }

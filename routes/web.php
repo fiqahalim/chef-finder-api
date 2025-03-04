@@ -18,18 +18,24 @@ use Illuminate\Support\Facades\Route;
 // Home page
 Route::get('/', [WebController::class, 'home'])->name('home');
 
-// Contact us page
+// Contact/About us page
 Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
+Route::get('/about', [WebController::class, 'aboutUs'])->name('about');
 
 // Show restaurant details
+Route::get('/restaurants', [WebController::class, 'listRestaurants'])->name('restaurant.index');
 Route::get('/restaurant/{id}', [WebController::class, 'showRestaurant'])->name('restaurant.show');
 
 // Show chef details
+Route::get('/chefs', [WebController::class, 'listChef'])->name('chef.index');
 Route::get('/chef/{id}', [WebController::class, 'showChef'])->name('chef.show');
+Route::get('/chef-interview', [WebController::class, 'showInterviews'])->name('chef.interview');
 
 // Reservation form
-Route::get('/reserve/{restaurantId}', [WebController::class, 'showReservationForm'])->name('reservation.form');
-Route::post('/reserve', [WebController::class, 'makeReservation'])->name('reservation.make');
+Route::middleware('auth')->group(function () {
+    Route::get('/reserve/{restaurantId}', [WebController::class, 'showReservationForm'])->name('reservation.form');
+    Route::post('/reserve', [WebController::class, 'makeReservation'])->name('reservation.make');
+});
 
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

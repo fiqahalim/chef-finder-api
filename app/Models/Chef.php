@@ -21,4 +21,9 @@ class Chef extends Model
     {
         return $this->belongsTo(Restaurant::class);
     }
+
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class);
+    }
 }

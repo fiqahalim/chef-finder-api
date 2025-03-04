@@ -7,7 +7,7 @@
                 <h5 class="section-title ff-secondary text-center text-primary fw-normal" style="margin-top:50px;margin-bottom:50px;">
                     {{ __('default.global.contact-us') }}
                 </h5>
-                <h1 class="mb-5">Contact For Any Query</h1>
+                <h1 class="mb-5">Book A Table Online</h1>
             </div>
 
             <div class="row g-4">
