@@ -66,14 +66,14 @@ class WebController extends Controller
     {
         $request->validate([
             'restaurant_id' => 'required|exists:restaurants,id',
-            'user_id' => 'required|exists:users,id',
-            'reservation_date' => 'required|date',
+            'reservation_date' => 'required|date_format:Y-m-d\TH:i',
             'guests' => 'required|integer|min:1',
         ]);
 
         try {
             $reservationData = $request->all();
             $reservationData['user_id'] = auth()->user()->id;
+            $reservationData['status'] = 'booked';
     
             $reservation = Reservation::create($reservationData);
     
@@ -82,12 +82,6 @@ class WebController extends Controller
                 return redirect()->route('reservation.form')
                                  ->with('success', 'Your reservation has been made successfully!');
             } else {
-                dd($reservation);
-                Log::error('Reservation failed to create. No data saved.', [
-                    'user_id' => auth()->user()->id,
-                    'reservation_data' => $reservationData
-                ]);
-    
                 return redirect()->route('reservation.form')
                                  ->with('error', 'There was an issue making your reservation. Please try again.');
             }

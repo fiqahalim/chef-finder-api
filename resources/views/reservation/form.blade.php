@@ -18,12 +18,15 @@
                         {{ __('default.menu.reservations') }}
                     </h5>
                     <h1 class="text-white mb-4">Book A Table Online</h1>
+
+                    @include('includes.message')
                     
                     <!-- Reservation Form -->
                     <form action="{{ route('reservation.save') }}" method="POST">
                         @csrf
 
                         <div class="row g-3">
+                            <!-- Restaurant Dropdown -->
                             <div class="form-group">
                                 <label for="restaurant_id">Choose a Restaurant</label>
                                 <select class="form-control" id="restaurant_id" name="restaurant_id" required>
@@ -34,20 +37,10 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name">{{ __('default.global.name') }}</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">{{ __('default.global.email') }}</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
-                            </div>
-
                             <!-- Date Input -->
                             <div class="form-group">
-                                <label for="date">{{ __('default.reservation.reserve-date') }}</label>
-                                <input type="date" class="form-control" id="reservation_date" name="reservation_date" required>
+                                <label for="reservation_date">{{ __('default.reservation.reserve-date') }}</label>
+                                <input type="datetime-local" class="form-control" id="reservation_date" name="reservation_date" required>
                             </div>
 
                             <!-- Number of Guests Input -->
