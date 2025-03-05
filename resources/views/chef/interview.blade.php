@@ -12,10 +12,10 @@
 
             <div class="row g-4">
                 @foreach ($chefs as $chef)
-                <div class="col-md-6 mb-4">
+                <div class="col-md-3 mb-4">
                     <div class="card">
-                        <img src="{{ $chef->profile_image ? asset($chef->profile_image) : asset('../img/team-1.jpg') }}"
-                                class="card-img-top" alt="{{ $chef->name }}">
+                        <img src="{{ asset('img/' . $chef->profile_image) }}"
+                                class="card-img-top img-fluid custom-interview-size" alt="{{ $chef->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $chef->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $chef->specialty }}</h6>

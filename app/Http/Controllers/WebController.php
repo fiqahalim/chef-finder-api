@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Restaurant;
 use App\Models\Chef;
 use App\Models\Reservation;
+
 
 class WebController extends Controller
 {
@@ -50,7 +54,7 @@ class WebController extends Controller
     }
 
     // Show reservation form
-    public function showReservationForm($restaurantId)
+    public function showReservationForm()
     {
         $restaurants = Restaurant::all();
         
@@ -62,15 +66,35 @@ class WebController extends Controller
     {
         $request->validate([
             'restaurant_id' => 'required|exists:restaurants,id',
-            'user_id' => 'required|exists:users,id',
-            'reservation_date' => 'required|date',
+            'reservation_date' => 'required|date_format:Y-m-d\TH:i',
             'guests' => 'required|integer|min:1',
         ]);
 
-        Reservation::create($request->all());
-
-        return redirect()->route('restaurant.show', $request->restaurant_id)
-                     ->with('success', 'Your reservation has been made successfully!');
+        try {
+            $reservationData = $request->all();
+            $reservationData['user_id'] = auth()->user()->id;
+            $reservationData['status'] = 'booked';
+    
+            $reservation = Reservation::create($reservationData);
+    
+            // Check if the reservation was created successfully
+            if ($reservation) {
+                return redirect()->route('reservation.form')
+                                 ->with('success', 'Your reservation has been made successfully!');
+            } else {
+                return redirect()->route('reservation.form')
+                                 ->with('error', 'There was an issue making your reservation. Please try again.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Error during reservation creation: ' . $e->getMessage(), [
+                'user_id' => auth()->user()->id,
+                'reservation_data' => $request->all(),
+                'error' => $e->getTraceAsString()
+            ]);
+    
+            return redirect()->route('reservation.form')
+                             ->with('error', 'Something went wrong while processing your reservation. Please try again later.');
+        }
     }
 
     // Contact us page
@@ -88,7 +112,7 @@ class WebController extends Controller
     // Interview page
     public function showInterviews()
     {
-        $chefs = Chef::all();
+        $chefs = Chef::with('interviews')->take(4)->get();
 
         return view('chef.interview', compact('chefs'));
     }

@@ -36,9 +36,15 @@ return [
         'interviews'    => 'Interviews',
         'reservations'  => 'Reservations',
         'loading'       => 'Loading...',
+        'login'         => 'Login',
+        'register'      => 'Register',
+        'logout'        => 'Logout',
     ],
     'reservation' => [
         'booked'        => 'Book A Reservation Now',
+        'reserve-date'  => 'Reservation Date',
+        'guest'         => 'Number of Guests',
+        'confirm'       => 'Confirm Reservation',
     ],
     'footer' => [
         'reserved'  => 'All Right Reserved',

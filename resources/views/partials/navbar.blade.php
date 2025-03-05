@@ -25,8 +25,18 @@
                         <a class="nav-link text-light" href="{{ route('chef.interview') }}">{{ __('default.menu.interviews') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('reservation.form', $restaurant->id) }}">{{ __('default.menu.reservations') }}</a>
+                        <a class="nav-link text-light" href="{{ route('reservation.form') }}">{{ __('default.menu.reservations') }}</a>
                     </li>
+                    @auth
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                                @csrf
+                            </form>
+                            <a href="#" class="nav-link text-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('default.menu.logout') }}
+                            </a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>

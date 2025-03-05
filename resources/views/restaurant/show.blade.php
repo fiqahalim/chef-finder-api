@@ -18,7 +18,7 @@
 
         <!-- Restaurant Details -->
         <div class="restaurant-details centered-restaurant-details">
-            <img src="{{ $restaurant->image ? asset('storage/restaurants/' . $restaurant->image) : asset('img/restaurant-1.jpg') }}" 
+            <img src="{{ asset('storage/' . $restaurant->image) }}" 
                     alt="{{ $restaurant->name }}" 
                     class="img-fluid mb-4" 
                     style="max-width: 100%; height: auto;">
@@ -39,11 +39,6 @@
                         </li>
                     @endforeach
                 </ul>
-            </div>
-
-            <!-- Reservation Button -->
-            <div class="mt-4">
-                <a href="{{ route('reservation.form', $restaurant->id) }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">{{ __('default.reservation.booked') }}</a>
             </div>
         </div>
     </div>

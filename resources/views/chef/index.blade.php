@@ -15,7 +15,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item text-center rounded overflow-hidden">
                         <div class="rounded-circle overflow-hidden m-4">
-                            <img class="img-fluid" src="{{ asset('storage/' . $chef->profile_image) }}" alt="{{ $chef->name }}">
+                            <img class="img-fluid" src="{{ asset('img/' . $chef->profile_image) }}" alt="{{ $chef->name }}">
                         </div>
                         <h5 class="mb-0">{{ $chef->name }}</h5>
                         <small>{{ $chef->designation }}</small>
