@@ -18,7 +18,7 @@
 
         <!-- Restaurant Details -->
         <div class="restaurant-details centered-restaurant-details">
-            <img src="{{ asset('storage/' . $restaurant->image) }}" 
+            <img src="{{ asset('img/' . $restaurant->image) }}" 
                     alt="{{ $restaurant->name }}" 
                     class="img-fluid mb-4" 
                     style="max-width: 100%; height: auto;">
@@ -35,7 +35,7 @@
                 <ul>
                     @foreach ($restaurant->chefs as $chef)
                         <li>
-                            <a href="{{ route('chef.show', $chef->id) }}">{{ $chef->name }}</a> - {{ __('default.global.specialty') }}: {{ $chef->specialty }}
+                            <a href="">{{ $chef->name }}</a> - {{ __('default.global.specialty') }}: {{ $chef->specialty }}
                         </li>
                     @endforeach
                 </ul>
