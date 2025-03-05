@@ -72,38 +72,32 @@ class WebController extends Controller
         ]);
 
         try {
-            // Prepare the reservation data
             $reservationData = $request->all();
             $reservationData['user_id'] = auth()->user()->id;
     
-            // Attempt to create the reservation
             $reservation = Reservation::create($reservationData);
     
             // Check if the reservation was created successfully
             if ($reservation) {
-                // Success
                 return redirect()->route('reservation.form')
                                  ->with('success', 'Your reservation has been made successfully!');
             } else {
-                // Failure - log the error
+                dd($reservation);
                 Log::error('Reservation failed to create. No data saved.', [
                     'user_id' => auth()->user()->id,
                     'reservation_data' => $reservationData
                 ]);
     
-                // Redirect with an error message
                 return redirect()->route('reservation.form')
                                  ->with('error', 'There was an issue making your reservation. Please try again.');
             }
         } catch (\Exception $e) {
-            // If there is any exception, log it
             Log::error('Error during reservation creation: ' . $e->getMessage(), [
                 'user_id' => auth()->user()->id,
                 'reservation_data' => $request->all(),
                 'error' => $e->getTraceAsString()
             ]);
     
-            // Redirect with an error message
             return redirect()->route('reservation.form')
                              ->with('error', 'Something went wrong while processing your reservation. Please try again later.');
         }
@@ -124,7 +118,7 @@ class WebController extends Controller
     // Interview page
     public function showInterviews()
     {
-        $chefs = Chef::all();
+        $chefs = Chef::with('interviews')->take(4)->get();
 
         return view('chef.interview', compact('chefs'));
     }

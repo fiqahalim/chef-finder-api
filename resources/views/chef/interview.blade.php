@@ -14,7 +14,7 @@
                 @foreach ($chefs as $chef)
                 <div class="col-md-3 mb-4">
                     <div class="card">
-                        <img src="{{ asset('storage/' . $chef->profile_image) }}"
+                        <img src="{{ asset('img/' . $chef->profile_image) }}"
                                 class="card-img-top img-fluid custom-interview-size" alt="{{ $chef->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $chef->name }}</h5>

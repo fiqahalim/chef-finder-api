@@ -37,7 +37,7 @@ class RestaurantSeeder extends Seeder
         Restaurant::create([
             'name' => 'El Camino',
             'location' => 'Barcelona, Spain',
-            'image' => 'restaurants/el_camino.jpg',
+            'image' => 'restaurants/el_camino.jpeg',
             'rating' => 4.6,
         ]);
 
@@ -58,7 +58,7 @@ class RestaurantSeeder extends Seeder
         Restaurant::create([
             'name' => 'Pasta Fresca',
             'location' => 'Florence, Italy',
-            'image' => 'restaurants/pasta_fresca.jpg',
+            'image' => 'restaurants/dome.jpg',
             'rating' => 4.7,
         ]);
 

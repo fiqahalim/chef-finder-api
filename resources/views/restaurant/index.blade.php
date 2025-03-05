@@ -15,7 +15,7 @@
             @foreach($restaurants as $restaurant)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm h-100">
-                        <img src="{{ asset('storage/' . $restaurant->image) }}"
+                        <img src="{{ asset('img/' . $restaurant->image) }}"
                             class="card-img-top img-fluid custom-img-size" alt="{{ $restaurant->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $restaurant->name }}</h5>

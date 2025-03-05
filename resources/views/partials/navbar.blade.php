@@ -29,10 +29,12 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
                                 @csrf
-                                <button type="submit" class="btn btn-primary py-2 px-4">{{ __('default.menu.logout') }}</button>
                             </form>
+                            <a href="#" class="nav-link text-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('default.menu.logout') }}
+                            </a>
                         </li>
                     @endauth
                 </ul>
